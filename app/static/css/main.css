@@ -1,0 +1,16 @@
+@import 'components/header.css';
+@import 'components/footer.css';
+@import 'pages/top_artists.css';
+
+/* Global styles */
+:root {
+    --primary-color: #1DB954;
+    --secondary-color: #191414;
+    --text-color: #FFFFFF;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}

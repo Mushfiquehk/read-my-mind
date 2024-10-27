@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Access</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Spotify Access</h1>
+    {% if token_data and token_data.is_valid %}
+        <p>Access token is valid until: <span id="expiration-time"></span></p>
+        <p>Time remaining: <span id="time-remaining"></span></p>
+    {% else %}
+        <a href="{{ url_for('main.login') }}"><button>Get Access Token</button></a>
+        <a href="{{ url_for('main.refresh_token') }}"><button>Refresh Token</button></a>
+    {% endif %}
+    
+    <a href="{{ url_for('spotify.top_artists') }}"><button>Get Top Artists</button></a>
+    
+    <script>
+        {% if token_data and token_data.is_valid %}
+            const expirationTime = new Date("{{ token_data.expires_at }}");
+            
+            function updateTimer() {
+                const now = new Date();
+                const timeRemaining = expirationTime - now;
+                
+                if (timeRemaining > 0) {
+                    const minutes = Math.floor(timeRemaining / 60000);
+                    const seconds = Math.floor((timeRemaining % 60000) / 1000);
+                    document.getElementById('expiration-time').textContent = expirationTime.toLocaleString();
+                    document.getElementById('time-remaining').textContent = `${minutes}m ${seconds}s`;
+                } else {
+                    document.getElementById('expiration-time').textContent = '00:00:00';
+                    document.getElementById('time-remaining').textContent = 'Token expired';
+                    clearInterval(timerInterval);
+                }
+            }
+
+            updateTimer();
+            const timerInterval = setInterval(updateTimer, 1000);
+
+        {% endif %}
+    </script>
+
+</html>
