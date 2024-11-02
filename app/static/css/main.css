@@ -1,11 +1,12 @@
 @import 'components/header.css';
 @import 'components/footer.css';
 @import 'pages/top_artists.css';
+@import 'pages/index.css';
 
 /* Global styles */
 :root {
-    --primary-color: #1DB954;
-    --secondary-color: #191414;
+    --primary-color: #1ED760;
+    --secondary-color: #121212;
     --text-color: #FFFFFF;
 }
 
@@ -13,4 +14,15 @@ body {
     font-family: Arial, sans-serif;
     background-color: var(--secondary-color);
     color: var(--text-color);
+    font-family: "Lexend", sans-serif;
 }
+
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+.lexend-<uniquifier> {
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+} */

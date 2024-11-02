@@ -1,22 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Access</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body>
-    <h1>Spotify Access</h1>
+{% extends "base.html" %}
+
+{% block title %}MHKBD Profile{% endblock %}
+
+{% block content %}
+    <h1>Access MHKBD</h1>
+
+    <section class="about-section">
+        <div class="profile-image-container">
+            <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Profile Picture" class="profile-image">
+        </div>
+        <div class="about-text">
+            <p>Hi! I'm MHKBD, a music enthusiast and developer. I love exploring new artists and sharing music with others. This app helps me track my listening habits and discover new favorites on Spotify.</p>
+        </div>
+    </section>
+
+    <section class="content">
+        <h2>Spotify Access</h2>
+    </section>
+
     {% if token_data and token_data.is_valid %}
         <p>Access token is valid until: <span id="expiration-time"></span></p>
         <p>Time remaining: <span id="time-remaining"></span></p>
     {% else %}
-        <a href="{{ url_for('main.login') }}"><button>Get Access Token</button></a>
-        <a href="{{ url_for('main.refresh_token') }}"><button>Refresh Token</button></a>
+        <a href="{{ url_for('main.login') }}"><button class="btn btn-primary">Get Access Token</button></a>
+        <a href="{{ url_for('main.refresh_token') }}"><button class="btn btn-secondary">Refresh Token</button></a>
     {% endif %}
     
-    <a href="{{ url_for('spotify.top_artists') }}"><button>Get Top Artists</button></a>
+    <a href="{{ url_for('spotify.top_artists') }}"><button class="btn btn-primary">Get Top Artists</button></a>
     
     <script>
         {% if token_data and token_data.is_valid %}
@@ -43,5 +53,4 @@
 
         {% endif %}
     </script>
-
-</html>
+{% endblock %}

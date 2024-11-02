@@ -1,0 +1,82 @@
+/* Container styles */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+/* Button styles */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1DB954, #1ed760);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1ed760, #1DB954);
+}
+
+.btn-secondary {
+    background: #282828;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #333333;
+}
+
+/* Timer display styles */
+#expiration-time,
+#time-remaining {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #1DB954;
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Profile section styles */
+.about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.profile-image-container {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
