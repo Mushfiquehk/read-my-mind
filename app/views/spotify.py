@@ -8,8 +8,8 @@ import requests
 from flask import (
     Blueprint,
     current_app,
-    render_template,
 )
+# render_template,
 #     jsonify,
 #     redirect,
 #     request,
@@ -138,35 +138,31 @@ def get_spotify_profile():
     return None
 
 
-def top_artists():
+def get_top_artists():
     """Get my top 5 artists"""
-    artists = fetch_spotify_data(
+    artists = get_spotify_data(
         "https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=5&offset=0"
     )
-    return render_template("pages/top_artists.html", top_artists_list=artists)
+    return artists
 
 
-def on_repeats():
+def get_on_repeats():
     """Get my current top 5 tracks"""
-    shows = fetch_spotify_data(
+    shows = get_spotify_data(
         "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5&offset=0"
     )
-    return render_template(
-        "pages/top_songs.html", top_songs_list=shows, title="On Repeat"
-    )
+    return shows
 
 
-def top_songs():
+def get_top_songs():
     """Get my top 5 songs"""
-    songs = fetch_spotify_data(
+    songs = get_spotify_data(
         "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5&offset=0"
     )
-    return render_template(
-        "pages/top_songs.html", top_songs_list=songs, title="Favorite Songs"
-    )
+    return songs
 
 
-def fetch_spotify_data(url: str) -> List[dict]:
+def get_spotify_data(url: str) -> List[dict]:
     '''Get using correct spotify credentials'''
     collection = current_app.config["ACCESS_TOKENS_COLLECTION"]
     access_token = collection.find_one(sort=[("_id", -1)])
