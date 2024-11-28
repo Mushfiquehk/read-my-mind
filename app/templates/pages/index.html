@@ -3,54 +3,71 @@
 {% block title %}MHKBD Profile{% endblock %}
 
 {% block content %}
-    <h1>Access MHKBD</h1>
+<h1>Access MHKBD</h1>
 
-    <section class="about-section">
-        <div class="profile-image-container">
-            <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Profile Picture" class="profile-image">
-        </div>
-        <div class="about-text">
-            <p>Hi! I'm MHKBD, a music enthusiast and developer. I love exploring new artists and sharing music with others. This app helps me track my listening habits and discover new favorites on Spotify.</p>
-        </div>
-    </section>
+<section class="about-section">
+    <div class="profile-image-container">
+        <img src="{{ spotify_profile_image }}" alt="Profile Picture" class="profile-image">
+    </div>
+    <div class="about-text">
+        <p>Hi! I'm MHKBD, a music enthusiast and developer. I love exploring new artists and sharing music with others.
+            This app helps me track my listening habits and discover new favorites on Spotify.</p>
+    </div>
+</section>
 
-    <section class="content">
-        <h2>Spotify Access</h2>
-    </section>
+<section class="projects-section">
+    <h2>Projects</h2>
+    <div class="projects-container">
+        {% for project in projects %}
+        <div class="project-card">
+            <h3><a href="{{ project.url }}" target="blank">{{ project.title }}</a></h3>
+            <p>{{ project.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="spotify-section">
+    <h2>Spotify Access</h2>
 
     {% if token_data and token_data.is_valid %}
-        <p>Access token is valid until: <span id="expiration-time"></span></p>
-        <p>Time remaining: <span id="time-remaining"></span></p>
+    <p>Access token is valid until: <span id="expiration-time"></span></p>
+    <p>Time remaining: <span id="time-remaining"></span></p>
     {% else %}
-        <a href="{{ url_for('main.login') }}"><button class="btn btn-primary">Get Access Token</button></a>
-        <a href="{{ url_for('main.refresh_token') }}"><button class="btn btn-secondary">Refresh Token</button></a>
+    <a href="{{ url_for('spotify.login') }}"><button class="btn btn-primary">Request Access</button></a>
+    <a href="{{ url_for('spotify.refresh_token') }}"><button class="btn btn-secondary">Refresh Token</button></a>
     {% endif %}
-    
-    <a href="{{ url_for('spotify.top_artists') }}"><button class="btn btn-primary">Get Top Artists</button></a>
-    
-    <script>
-        {% if token_data and token_data.is_valid %}
-            const expirationTime = new Date("{{ token_data.expires_at }}");
-            
-            function updateTimer() {
-                const now = new Date();
-                const timeRemaining = expirationTime - now;
-                
-                if (timeRemaining > 0) {
-                    const minutes = Math.floor(timeRemaining / 60000);
-                    const seconds = Math.floor((timeRemaining % 60000) / 1000);
-                    document.getElementById('expiration-time').textContent = expirationTime.toLocaleString();
-                    document.getElementById('time-remaining').textContent = `${minutes}m ${seconds}s`;
-                } else {
-                    document.getElementById('expiration-time').textContent = '00:00:00';
-                    document.getElementById('time-remaining').textContent = 'Token expired';
-                    clearInterval(timerInterval);
-                }
-            }
 
-            updateTimer();
-            const timerInterval = setInterval(updateTimer, 1000);
+    <a href="{{ url_for('spotify.top_artists') }}"><button class="btn btn-primary">Top Artists</button></a>
+    <a href="{{ url_for('spotify.top_songs') }}"><button class="btn btn-secondary">Favorite songs</button></a>
+    <a href="{{ url_for('spotify.on_repeats') }}"><button class="btn btn-primary">On Repeat</button></a>
+</section>
 
-        {% endif %}
-    </script>
+<script>
+    {% if token_data and token_data.is_valid %}
+    const expirationTime = new Date("{{ token_data.expires_at }}");
+
+    function updateTimer() {
+        const now = new Date();
+        const timeRemaining = expirationTime - now;
+
+        if (timeRemaining > 0) {
+            const minutes = Math.floor(timeRemaining / 60000);
+            const seconds = Math.floor((timeRemaining % 60000) / 1000);
+            document.getElementById('expiration-time').textContent = expirationTime.toLocaleString();
+            document.getElementById('time-remaining').textContent = `${minutes}m ${seconds}s`;
+        } else {
+            document.getElementById('expiration-time').textContent = '00:00:00';
+            document.getElementById('time-remaining').textContent = 'Token expired';
+            clearInterval(timerInterval);
+        }
+    }
+
+    updateTimer();
+    const timerInterval = setInterval(updateTimer, 1000);
+    {% else %}
+    document.getElementById('expiration-time').textContent = '00:00:00';
+    document.getElementById('time-remaining').textContent = 'Token expired';
+    {% endif %}
+</script>
 {% endblock %}

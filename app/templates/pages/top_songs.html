@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Top Songs{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    {% if top_songs_list %}
+        <ul class="song-list">
+            {% for song in top_songs_list %}
+                <li class="song-item">
+                    <img class="song-image" src="{{ song.album.images[0].url }}" alt="{{ song.name }}">
+                    <div class="song-info">
+                        <div class="song-name">{{ song.name }}</div>
+                        <div class="song-release-date">Release Date: {{ song.release_date }}</div>
+                        <div class="song-popularity">
+                            Popularity: {{ song.popularity }}%
+                            <div class="popularity-bar">
+                                <div class="popularity-fill" style="width: {{ song.popularity }}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No top shows data available</p>
+    {% endif %}
+{% endblock %}
