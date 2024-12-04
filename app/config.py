@@ -32,6 +32,8 @@ class Config:
         # Add Spotify credentials to app config
         app.config["SPOTIFY_CLIENT_ID"] = Config.SPOTIFY_CLIENT_ID
         app.config["SPOTIFY_CLIENT_SECRET"] = Config.SPOTIFY_CLIENT_SECRET
+        
+        app.config["DOMAIN"] = "localhost"
 
         # db_user = os.environ["DB_USER"]
         # db_host = os.environ["DB_HOST"]

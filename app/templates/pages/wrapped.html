@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/wrapped.css') }}">
+{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="wrapped-container">
+
+    <div class="home-button">
+        <a href="{{ url_for('main.home') }}" class="home-btn">MHKBD</a>
+    </div>
+
+    <div class="wrapped-slide active" id="intro-slide">
+        <h1 class="wrapped-title">{{ title }}</h1>
+     </div>
+
+    <div class="wrapped-slide" id="main-content">
+        <div class="wrapped-header">My Top {{ type.capitalize() }}</div>
+        
+        <div class="wrapped-tabs">
+            {% for item in items %}
+            <div class="tab-container">
+                <input type="radio" name="tabs" id="tab{{ loop.index }}" {% if loop.first %}checked{% endif %}>
+                <label for="tab{{ loop.index }}" class="tab-label glass-effect">
+                    <span class="item-rank">#{{ loop.index }} {{ item.name }}</span>
+                </label>
+                
+                <div class="tab-content glass-effect">
+                    <div class="artist-details">
+                        <div class="artist-image">
+                            <img src="{{ item.images[0].url }}" alt="{{ item.name }}">
+                        </div>
+                        <div class="artist-info">
+                            <h3>{{ item.name }}</h3>
+                            <div class="genres">
+                                {% for genre in item.genres[:3] %}
+                                <span class="genre-tag">{{ genre }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

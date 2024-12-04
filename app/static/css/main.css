@@ -12,10 +12,40 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
     background-color: var(--secondary-color);
     color: var(--text-color);
     font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.home-button {
+  display: flex;
+  justify-content: center;
+}
+
+.home-btn {
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
 }
 
 /* // <uniquifier>: Use a unique and descriptive class name

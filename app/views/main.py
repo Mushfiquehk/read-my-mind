@@ -1,10 +1,8 @@
 """Main views"""
 
-from datetime import datetime, timedelta
+from flask import Blueprint, render_template
 
-from flask import Blueprint, current_app, render_template
-
-from .spotify import get_spotify_profile, get_top_artists, get_top_songs, get_on_repeats
+from .spotify import read_spotify_profile, get_top_artists, get_top_songs, get_on_repeats
 
 main = Blueprint("main", __name__)
 
@@ -26,34 +24,13 @@ def home():
     """
 
     # get acces_token to request my profile info
-    collection = current_app.config["ACCESS_TOKENS_COLLECTION"]
-    access_token = collection.find_one(sort=[("_id", -1)])
-    token_data = {}
-    if access_token:
-        expiration_time = access_token.get(
-            "expires_at",
-            access_token["_id"].generation_time.replace(tzinfo=None)
-            + timedelta(seconds=access_token["expires_in"]),
-        )
-
-        token_data = {
-            "expires_at": expiration_time.isoformat(),
-            "is_valid": expiration_time > datetime.now(),
-        }
-
-    try:
-        _ = token_data["is_valid"]
-        profile = get_spotify_profile()
-        spotify_profile_image = profile["images"][0]["url"]
-    except IndexError:
-        spotify_profile_image = None
-    except TypeError:
-        spotify_profile_image = None
+    profile = read_spotify_profile()
+    spotify_profile_image = profile["images"][0]["url"]
 
     projects = [
         {
             "title": "This Website",
-            "description": "Everything I do and everything I am into",
+            "description": "Things I do and things I am into",
             "url": "https://github.com/Mushfiquehk/read-my-mind",
         },
         {
@@ -61,14 +38,15 @@ def home():
             "description": "Online retail storefront with item and order function",
             "url": "https://github.com/Mushfiquehk/Stork-Distribution.git",
         },
+        {
+            "title": "Stay Tuned",
+            "description": "More coming soon...",
+            "url": ""
+        }
     ]
 
     return render_template(
         "pages/index.html",
-        token_data=token_data,
         spotify_profile_image=spotify_profile_image,
-        projects=projects,
-        top_artists=get_top_artists(),
-        top_tracks=get_top_songs(),
-        on_repeats=get_on_repeats(),
+        projects=projects
     )

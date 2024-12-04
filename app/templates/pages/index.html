@@ -14,7 +14,7 @@
             This app helps me track my listening habits and discover new favorites on Spotify.</p>
     </div>
 </section>
-
+    
 <section class="projects-section">
     <h2>Projects</h2>
     <div class="projects-container">
@@ -28,11 +28,13 @@
 </section>
 
 <section class="spotify-section">
-    <h2>Spotify Access</h2>   
+    <h2>Spotify Wrapped Predictions</h2>   
 
-    <button class="btn btn-primary">Top Artists</button>
-    <button class="btn btn-secondary">Favorite songs</button>
-    <button class="btn btn-primary">On Repeat</button>
+    <div class="spotify-buttons">
+        <a href="{{ url_for('wrapped.artists') }}" class="btn btn-primary">Top Artists</a>
+        <a href="{{ url_for('wrapped.tracks') }}" class="btn btn-secondary disabled" tabindex="-1" aria-disabled="true">Favorite Songs</a>
+        <a href="{{ url_for('wrapped.on_repeat') }}" class="btn btn-primary disabled" tabindex="-1" aria-disabled="true">On Repeat</a>
+    </div>
 </section>
-
+    
 {% endblock %}
