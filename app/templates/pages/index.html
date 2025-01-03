@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/index.css') }}">
+{% endblock %}
+
 {% block title %}MHKBD Profile{% endblock %}
 
 {% block content %}
@@ -31,9 +36,8 @@
     <h2>Spotify Wrapped Predictions</h2>   
 
     <div class="spotify-buttons">
-        <a href="{{ url_for('wrapped.artists') }}" class="btn btn-primary">Top Artists</a>
-        <a href="{{ url_for('wrapped.tracks') }}" class="btn btn-secondary disabled" tabindex="-1" aria-disabled="true">Favorite Songs</a>
-        <a href="{{ url_for('wrapped.on_repeat') }}" class="btn btn-primary disabled" tabindex="-1" aria-disabled="true">On Repeat</a>
+        <a href="{{ url_for('wrapped.current_wrapped') }}" class="btn btn-primary">Current Wrapped</a>
+        <a href="{{ url_for('wrapped.my_recommendations') }}" class="btn btn-secondary disabled" tabindex="-1" aria-disabled="true">Favorite Songs</a>
     </div>
 </section>
     

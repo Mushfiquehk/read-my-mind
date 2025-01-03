@@ -140,12 +140,12 @@ def get_spotify_data(url: str) -> List[dict]:
     access_token = collection.find_one(sort=[("_id", -1)]).get("access_token")
     headers = {"Authorization": f"Bearer {access_token}"}
     response = requests.get(url, headers=headers, timeout=5)
-    
+
     if response.ok:
         print(response.json())
         data = response.json()['items']
         return data
-    
+
     return []
 
 
@@ -193,7 +193,7 @@ def get_top_artists():
     return artists
 
 
-def read_top_artists():
+def read_top_artists() -> list[dict]:
     """Read the top 5 artists from the database"""
     artists_collection = current_app.config["SPOTIFY_DB"].artists
     cursor: Cursor = artists_collection.find().sort("date", -1).limit(5)
@@ -247,10 +247,14 @@ def get_top_songs():
     return songs
     
 
-def read_top_songs() -> Cursor:
+def read_top_songs() -> list[dict]:
     """Read the top 5 songs from the database"""
     songs_collection = current_app.config["SPOTIFY_DB"].songs
     cursor = songs_collection.find().sort("date", -1).limit(5)
             
-    return cursor
+    top_songs = []
+    for song in cursor:
+        top_songs.append(song)
+    
+    return top_songs
     
