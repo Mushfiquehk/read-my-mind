@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-from app import create_app
-
-app = create_app()
-
-if __name__ == "__main__":
-    app.run()
-    
-=======
 """
 
 """
@@ -22,4 +13,3 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=False)
->>>>>>> 781540aee37ad0303b109bb5a613d2f6e68f2844
