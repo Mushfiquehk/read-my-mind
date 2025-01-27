@@ -29,4 +29,4 @@ def create_app(config_class=Config):
 application = create_app()
 
 if __name__ == "__main__":
-    application.run(debug=True)
+    application.run(debug=False)
