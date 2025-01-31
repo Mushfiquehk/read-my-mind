@@ -4,6 +4,8 @@
 
 
 from flask import Flask
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 from app.config import Config
 from app.views.main import main
 from app.views.spotify import spotify
@@ -15,7 +17,8 @@ def create_app(config_class=Config):
     app = Flask(__name__,
                 template_folder="app/templates",
                 static_folder="app/static")
-
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+    
     Config.init_app(app)
     app.config.from_object(config_class)
 
