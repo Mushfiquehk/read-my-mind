@@ -1,17 +1,17 @@
 branch-defaults:
   main:
-    environment: rmm-prod
+    environment: rmm-dev
     group_suffix: null
 environment-defaults:
   wrapped-env:
     branch: null
     repository: null
 global:
-  application_name: read-my-mind
+  application_name: read-my-mind-dev
   branch: null
   default_ec2_keyname: null
   default_platform: Python 3.11
-  default_region: us-east-1
+  default_region: us-east-2
   include_git_submodules: true
   instance_profile: null
   platform_name: null
