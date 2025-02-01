@@ -1,4 +1,3 @@
-
 .wrapped-container {
     display: flex;
     flex-direction: column;
@@ -7,8 +6,10 @@
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #1a1a1a; /* Dark background */
-    color: #f0f0f0; /* Light text color */
+    background-color: #1a1a1a;
+    /* Dark background */
+    color: #f0f0f0;
+    /* Light text color */
 }
 
 /* Header Section */
@@ -24,18 +25,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #333; /* Darker background for back button */
-    color: #f0f0f0; /* Light text color */
+    color: #1DB954;
     font-size: 1.5em;
+    font-weight: bold;
     cursor: pointer;
 }
 
 /* Image Section */
 .image-section {
-    background-color: #333; /* Darker background for image section */
     padding: 10px;
     position: relative;
     overflow: hidden;
@@ -45,38 +42,44 @@
     width: 100%;
     height: auto;
     border-radius: 10px;
-    border: 2px solid #f0f0f0; /* Light border to make image pop */
+    border: 2px solid #f0f0f0;
+    /* Light border to make image pop */
 }
 
 /* Content Section */
 .content-section {
     margin-top: 20px;
     text-align: center;
-    color: #f0f0f0; /* Light text color */
+    color: #f0f0f0;
+    /* Light text color */
 }
 
 .top-section {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-    color: #f0f0f0; /* Light text color */
+    color: #f0f0f0;
+    /* Light text color */
 }
 
 .top-section h2 {
     font-size: 1.2em;
     margin-bottom: 10px;
-    color: #f0f0f0; /* Light text color */
+    color: #f0f0f0;
+    /* Light text color */
 }
 
 .artists {
     font-size: 0.9em;
-    color: #f0f0f0; /* Light text color */
+    color: #f0f0f0;
+    /* Light text color */
     text-align: left;
 }
 
 .songs {
     font-size: 0.9em;
-    color: #f0f0f0; /* Light text color */
+    color: #f0f0f0;
+    /* Light text color */
     text-align: right;
 }
 
@@ -88,25 +91,29 @@ ol {
 ol li {
     font-weight: bold;
     margin: 3px 0;
-    color: #f0f0f0; /* Light text color */
+    color: #f0f0f0;
+    /* Light text color */
 }
 
 /* Stats Section */
 .stats p {
     font-size: 1.1em;
     margin: 5px;
-    color: #f0f0f0; /* Light text color */
+    color: #f0f0f0;
+    /* Light text color */
 }
 
 .stats h1 {
     font-size: 3em;
     font-weight: bold;
     margin: 0;
-    color: #f0f0f0; /* Light text color */
+    color: #f0f0f0;
+    /* Light text color */
 }
 
 .stats h2 {
     font-size: 2em;
     margin-top: 5px;
-    color: #f0f0f0; /* Light text color */
+    color: #f0f0f0;
+    /* Light text color */
 }
