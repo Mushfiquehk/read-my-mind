@@ -10,22 +10,25 @@
 
 {% block content %}
   <!-- Main Container -->
-  <div class="wrapped-container">
-    <!-- Header Section -->
-    <div class="header-section">
-      <h1>Wrapped {{ year }}</h1>
-      <p>Here's how I listened this year</p>
-    </div>
-    
+  <div class="header-section">
     <!-- Back Button -->
     <div class="back-button">
-      <a href="{{ url_for('main.home') }}">MHKBD</a>
+      <h1>
+        <a href="{{ url_for('main.home') }}">
+          Wrapped {{ year }}
+        </a>
+      </h1>
     </div>
-    
-    <!-- Image Section -->
-    <div class="image-section">
-      <img src="{{ image_url }}" alt="Top Artist Photo" />
-    </div>
+    <p>Here's how I listened this year</p>
+  </div>
+  
+  <!-- Image Section -->
+  <div class="image-section">
+    <img src="{{ image_url }}" alt="Top Artist Photo" />
+  </div>
+  <p id="artist-name">{{ number_one_artist }}</p>
+
+  <div class="wrapped-container">
 
     <!-- Top Artists and Songs -->
     <div class="content-section">

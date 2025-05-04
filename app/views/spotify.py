@@ -8,20 +8,15 @@ This script also includes read functions to get the user's top artists,
 songs, and tracks.
 """
 
-from datetime import datetime, timedelta
+from datetime import datetime
 import random
 from typing import List
-import base64
 import requests
 from flask import (
     Blueprint,
     current_app,
-    jsonify,
-    redirect,
-    request,
-    url_for,
+    jsonify
 )
-from requests import PreparedRequest
 from pymongo.cursor import Cursor
 
 spotify = Blueprint("spotify", __name__)
@@ -160,19 +155,21 @@ def get_spotify_profile():
 
     if not response.ok:
         return jsonify({"error": "Failed to get profile"}), response.status_code
-    
+
     profile = response.json()
     profile_collection = current_app.config["SPOTIFY_DB"].profile
     profile_collection.insert_one(profile)
-    
+
     return profile
-    
+
+
 def read_spotify_profile():
     """Read the Spotify profile from the database"""
     profile_collection = current_app.config["SPOTIFY_DB"].profile
     profile = profile_collection.find_one()
     return profile
-        
+
+
 def get_top_artists():
     """Get my top 5 artists and store them in the database"""
     artists = get_spotify_data(
@@ -189,7 +186,7 @@ def get_top_artists():
         rank += 1
 
     artists_collection.insert_many(artists)
-    
+
     return artists
 
 
@@ -198,7 +195,7 @@ def read_top_artists() -> list[dict]:
     artists_collection = current_app.config["SPOTIFY_DB"].artists
     cursor: Cursor = artists_collection.find().sort("date", -1).limit(5)
     cursor = cursor.sort("rank")
-    
+
     # keep on artist name, image and genres
     artists = []
     for artist in cursor:
@@ -219,7 +216,7 @@ def get_on_repeats():
         track["date"] = datetime.now()
 
     on_repeats_collection.insert_many(on_repeats)
-    
+
     return on_repeats
 
 
@@ -235,26 +232,25 @@ def get_top_songs():
     songs = get_spotify_data(
         "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=5&offset=0"
     )
-    
+
     songs_collection = current_app.config["SPOTIFY_DB"].songs
-    
+
     # tag the songs with the current date
     for song in songs:
         song["date"] = datetime.now()
-        
+
     songs_collection.insert_many(songs)
-    
+
     return songs
-    
+
 
 def read_top_songs() -> list[dict]:
     """Read the top 5 songs from the database"""
     songs_collection = current_app.config["SPOTIFY_DB"].songs
     cursor = songs_collection.find().sort("date", -1).limit(5)
-            
+
     top_songs = []
     for song in cursor:
         top_songs.append(song)
-    
+
     return top_songs
-    

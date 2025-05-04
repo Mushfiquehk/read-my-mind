@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 400px;
+    width: 100%;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
     box-sizing: border-box;
     background-color: #1a1a1a;
-    /* Dark background */
     color: #f0f0f0;
-    /* Light text color */
+    border-radius: 10px;
 }
 
 /* Header Section */
@@ -18,7 +18,17 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.header-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.header-section p {
+    font-size: 1.2rem;
 }
 
 .back-button {
@@ -29,6 +39,11 @@
     font-size: 1.5em;
     font-weight: bold;
     cursor: pointer;
+    margin: 20px 0;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
 }
 
 /* Image Section */
@@ -41,45 +56,46 @@
 .image-section img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
-    border: 2px solid #f0f0f0;
-    /* Light border to make image pop */
 }
 
 /* Content Section */
 .content-section {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
     color: #f0f0f0;
-    /* Light text color */
+    width: 100%;
 }
 
 .top-section {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: #f0f0f0;
-    /* Light text color */
 }
 
 .top-section h2 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #1DB954;
+}
+
+.artists, .songs {
+    flex: 1;
+    font-size: 1rem;
     color: #f0f0f0;
-    /* Light text color */
 }
 
 .artists {
-    font-size: 0.9em;
-    color: #f0f0f0;
-    /* Light text color */
     text-align: left;
 }
 
-.songs {
-    font-size: 0.9em;
+#artist-names {
+    font-size: 1.2rem;
+    margin: 10px 0;
     color: #f0f0f0;
-    /* Light text color */
+}
+
+.songs {
     text-align: right;
 }
 
@@ -90,30 +106,75 @@ ol {
 
 ol li {
     font-weight: bold;
-    margin: 3px 0;
+    margin: 10px 0;
     color: #f0f0f0;
-    /* Light text color */
 }
 
 /* Stats Section */
+.stats {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .stats p {
-    font-size: 1.1em;
+    font-size: 1.2rem;
     margin: 5px;
     color: #f0f0f0;
-    /* Light text color */
 }
 
 .stats h1 {
-    font-size: 3em;
+    font-size: 3rem;
     font-weight: bold;
     margin: 0;
-    color: #f0f0f0;
-    /* Light text color */
+    color: #1DB954;
 }
 
 .stats h2 {
-    font-size: 2em;
-    margin-top: 5px;
-    color: #f0f0f0;
-    /* Light text color */
+    font-size: 2.2rem;
+    margin: 10px 0;
+    color: #1DB954;
+}
+
+/* Media Queries for better responsiveness */
+@media screen and (max-width: 600px) {
+    .wrapped-container {
+        padding: 30px 15px;
+        max-width: 100%;
+    }
+
+    .top-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .artists, .songs {
+        text-align: center;
+        width: 100%;
+    }
+
+    .header-section h1 {
+        font-size: 2rem;
+    }
+
+    .stats h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .wrapped-container {
+        padding: 50px 30px;
+    }
+
+    .image-section {
+        max-width: 500px;
+    }
+
+    .top-section {
+        padding: 0 60px;
+    }
 }
