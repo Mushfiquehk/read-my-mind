@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+    article {
+        width: 100%;
+        max-width: 800px;
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+    }
+    .article-header {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #333;
+        padding-bottom: 1rem;
+    }
+    .article-header h1 {
+        margin-bottom: 0.5rem;
+        /* Ensure title wraps on small screens */
+        word-wrap: break-word; 
+        line-height: 1.2;
+    }
+    .article-date {
+        color: #888;
+        font-size: 0.9rem;
+    }
+    .article-content {
+        line-height: 1.8;
+        font-size: 1.1rem;
+        width: 100%;
+        overflow-wrap: break-word; /* Prevent long words from breaking layout */
+    }
+    .article-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    .article-content p {
+        margin-bottom: 1.25rem;
+    }
+    .article-content h2 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    .article-content a {
+        color: #1db954;
+    }
+    .article-content ul, .article-content ol {
+        margin-bottom: 1.25rem;
+        padding-left: 1.5rem;
+    }
+    .article-content li {
+        margin-bottom: 0.5rem;
+    }
+    .back-link-container {
+        width: 100%;
+        max-width: 800px;
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+        text-align: left;
+    }
+    .back-link {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        color: #1db954;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+    body {
+        margin: 5% auto;
+    }
+
+</style>
+{% endblock %}
+
+{% block title %}{{ article.title }} - MHKBD{% endblock %}
+
+{% block content %}
+<div class="back-link-container">
+    <a href="{{ url_for('main.home') }}" class="back-link">← Back to Home</a>
+</div>
+
+<article>
+    <header class="article-header">
+        <h1>{{ article.title }}</h1>
+        <p class="article-date">{{ article.date }}</p>
+    </header>
+    
+    <div class="article-content">
+        {{ article.content | safe }}
+    </div>
+</article>
+{% endblock %}

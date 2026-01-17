@@ -10,7 +10,7 @@ global:
   application_name: rmm-dev
   branch: null
   default_ec2_keyname: null
-  default_platform: Python 3.12
+  default_platform: Python 3.13
   default_region: us-east-1
   include_git_submodules: true
   instance_profile: null

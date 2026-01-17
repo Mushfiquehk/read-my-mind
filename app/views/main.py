@@ -1,6 +1,8 @@
 """Main views"""
 
-from flask import Blueprint, render_template
+from datetime import datetime
+from flask import Blueprint, render_template, request, current_app, redirect, url_for
+from bson import ObjectId
 
 from .spotify import read_spotify_profile, get_top_artists, get_top_songs, get_on_repeats
 
@@ -45,8 +47,85 @@ def home():
         }
     ]
 
+    # Fetch articles from MongoDB, sorted by date descending
+    articles_collection = current_app.config["ARTICLES_COLLECTION"]
+    articles = list(articles_collection.find().sort("date", -1).limit(10))
+
     return render_template(
         "pages/index.html",
         spotify_profile_image=spotify_profile_image,
-        projects=projects
+        projects=projects,
+        articles=articles
     )
+
+
+@main.route("/article/<article_id>", methods=["GET"])
+def view_article(article_id):
+    """View a single article"""
+    articles_collection = current_app.config["ARTICLES_COLLECTION"]
+    article = articles_collection.find_one({"_id": ObjectId(article_id)})
+    
+    if not article:
+        return "Article not found", 404
+    
+    return render_template("pages/article.html", article=article)
+
+
+@main.route("/edit-article", methods=["GET"])
+def edit_article():
+    """List all articles for editing"""
+    articles_collection = current_app.config["ARTICLES_COLLECTION"]
+    articles = list(articles_collection.find().sort("date", -1))
+    return render_template("pages/edit_articles_list.html", articles=articles)
+
+
+@main.route("/edit-article/<article_id>", methods=["GET", "POST"])
+def edit_article_form(article_id):
+    """Edit an existing article"""
+    articles_collection = current_app.config["ARTICLES_COLLECTION"]
+    article = articles_collection.find_one({"_id": ObjectId(article_id)})
+
+    if not article:
+        return "Article not found", 404
+
+    if request.method == "POST":
+        title = request.form.get("title")
+        date_str = request.form.get("date")
+        content = request.form.get("content")
+
+        articles_collection.update_one(
+            {"_id": ObjectId(article_id)},
+            {"$set": {
+                "title": title,
+                "date": date_str,
+                "content": content
+            }}
+        )
+        return redirect(url_for("main.view_article", article_id=article_id))
+
+    return render_template("pages/edit_article.html", article=article, article_id=article_id)
+
+
+@main.route("/post-article", methods=["GET", "POST"])
+def post_article():
+    """Post a new article - simple form, no auth required"""
+    success = None
+    today = datetime.now().strftime("%Y-%m-%d")
+    
+    if request.method == "POST":
+        title = request.form.get("title")
+        date_str = request.form.get("date", today)
+        content = request.form.get("content")
+        
+        article = {
+            "title": title,
+            "date": date_str,
+            "content": content,
+            "created_at": datetime.utcnow()
+        }
+        
+        articles_collection = current_app.config["ARTICLES_COLLECTION"]
+        articles_collection.insert_one(article)
+        success = title
+    
+    return render_template("pages/post_article.html", today=today, success=success)

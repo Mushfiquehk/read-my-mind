@@ -32,6 +32,22 @@
     </div>
 </section>
 
+<section class="articles-section">
+    <h2>Articles</h2>
+    {% if articles %}
+    <div class="articles-list">
+        {% for article in articles %}
+        <div class="article-item">
+            <a href="{{ url_for('main.view_article', article_id=article._id) }}">{{ article.title }}</a>
+            <span class="article-date">{{ article.date }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-articles">No articles yet.</p>
+    {% endif %}
+</section>
+
 <section class="spotify-section">
     <h2>Spotify Wrapped Predictions</h2>   
 

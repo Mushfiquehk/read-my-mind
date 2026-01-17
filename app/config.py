@@ -29,6 +29,10 @@ class Config:
         app.config["MDB_CLIENT"] = mdb_client
         app.config["SPOTIFY_DB"] = mdb_client.spotify
         app.config["ACCESS_TOKENS_COLLECTION"] = mdb_client.spotify.access_tokens
+        
+        # Blog database and articles collection
+        app.config["BLOG_DB"] = mdb_client.blog
+        app.config["ARTICLES_COLLECTION"] = mdb_client.blog.articles
 
         # Ensure indexes for better query performance
         app.config["ACCESS_TOKENS_COLLECTION"].create_index([("expires_at", -1)])
