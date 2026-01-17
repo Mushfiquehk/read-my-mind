@@ -16,7 +16,7 @@ The title will be "Spotify Wrapped 2025 (Predictions)"
 from datetime import datetime
 
 from flask import Blueprint, render_template
-from .spotify import read_top_artists, read_top_songs, read_on_repeats
+from .spotify import read_top_artists, read_top_songs
 
 
 wrapped = Blueprint("wrapped", __name__)
@@ -50,7 +50,7 @@ def current_wrapped():
     year = datetime.now().year
 
     return render_template("pages/wrapped.html",
-                           title=f"Spotify Wrapped {year} (Predictions)",
+                           title="Songs on Repeat",
                            number_one_artist=number_one_artist,
                            artists=top_artists,
                            songs=top_songs,

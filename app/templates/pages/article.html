@@ -51,6 +51,61 @@
     .article-content li {
         margin-bottom: 0.5rem;
     }
+    /* Code block styling */
+    .article-content pre,
+    .article-content .code-block {
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        position: relative;
+    }
+    .article-content code {
+        font-family: 'Courier New', Consolas, monospace;
+        font-size: 0.95rem;
+        color: #e6e6e6;
+        background: transparent;
+    }
+    .article-content p code,
+    .article-content li code {
+        background: #1a1a1a;
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+    /* Copy button */
+    .code-wrapper {
+        position: relative;
+        margin: 1.5rem 0;
+    }
+    .code-wrapper pre {
+        margin: 0;
+        padding-right: 3.5rem;
+    }
+    .copy-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: #333;
+        border: 1px solid #444;
+        color: #888;
+        padding: 0.35rem 0.6rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        transition: all 0.2s ease;
+    }
+    .copy-btn:hover {
+        background: #444;
+        color: #fff;
+    }
+    .copy-btn.copied {
+        background: #1db954;
+        color: #fff;
+        border-color: #1db954;
+    }
     .back-link-container {
         width: 100%;
         max-width: 800px;
@@ -92,4 +147,28 @@
         {{ article.content | safe }}
     </div>
 </article>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add copy buttons to all code-wrapper elements
+    document.querySelectorAll('.code-wrapper').forEach(function(wrapper) {
+        const btn = wrapper.querySelector('.copy-btn');
+        const code = wrapper.querySelector('code');
+        if (btn && code) {
+            btn.addEventListener('click', function() {
+                navigator.clipboard.writeText(code.textContent).then(function() {
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(function() {
+                        btn.textContent = 'Copy';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        }
+    });
+});
+</script>
 {% endblock %}

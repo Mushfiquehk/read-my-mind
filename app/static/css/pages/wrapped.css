@@ -46,6 +46,13 @@
     transform: translateY(-2px);
 }
 
+.title-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1DB954;
+}
+
 /* Image Section */
 .image-section {
     padding: 10px;

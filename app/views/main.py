@@ -4,7 +4,7 @@ from datetime import datetime
 from flask import Blueprint, render_template, request, current_app, redirect, url_for
 from bson import ObjectId
 
-from .spotify import read_spotify_profile, get_top_artists, get_top_songs, get_on_repeats
+from .spotify import read_spotify_profile, get_top_artists, get_top_songs
 
 main = Blueprint("main", __name__)
 
