@@ -8,20 +8,19 @@
 {% block title %}MHKBD Profile{% endblock %}
 
 {% block content %}
-<h1>Access MHKBD</h1>
+<h1>MHKBD</h1>
 
 <section class="about-section">
     <div class="profile-image-container">
         <img src="{{ spotify_profile_image }}" alt="Profile Picture" class="profile-image">
     </div>
     <div class="about-text">
-        <p>Hi! I'm MHKBD, a music enthusiast and developer. I love exploring new artists and sharing music with others.
-            This app helps me track my listening habits and discover new favorites on Spotify.</p>
+        <p>Sharing things I find like and find useful, including projects that I have started.</p>
     </div>
 </section>
     
 <section class="projects-section">
-    <h2>Projects</h2>
+    <h2>Projects 📲</h2>
     <div class="projects-container">
         {% for project in projects %}
         <div class="project-card">
@@ -33,7 +32,7 @@
 </section>
 
 <section class="articles-section">
-    <h2>Articles</h2>
+    <h2>Articles 🖊️</h2>
     {% if articles %}
     <div class="articles-list">
         {% for article in articles %}
@@ -49,11 +48,11 @@
 </section>
 
 <section class="spotify-section">
-    <h2>Spotify Wrapped Predictions</h2>   
+    <h2>Songs On Repeat 🔁</h2>   
 
     <div class="spotify-buttons">
-        <a href="{{ url_for('wrapped.current_wrapped') }}" class="btn btn-primary">Current Wrapped</a>
-        <a href="{{ url_for('wrapped.my_recommendations') }}" class="btn btn-secondary disabled" tabindex="-1" aria-disabled="true">Favorite Songs</a>
+        <a href="{{ url_for('wrapped.current_wrapped') }}" class="btn btn-primary">Current</a>
+        <a href="{{ url_for('wrapped.my_recommendations') }}" class="btn btn-secondary disabled" tabindex="-1" aria-disabled="true">All time</a>
     </div>
 </section>
     

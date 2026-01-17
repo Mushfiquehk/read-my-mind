@@ -1,7 +1,9 @@
 .footer {
     padding-top: 3rem;
+    padding-bottom: 3rem; /* Ensure even top/bottom spacing */
     margin-top: auto;
     width: 100%;
+    background-color: var(--secondary-color); /* Ensure background is consistent */
 }
 
 img {
@@ -17,36 +19,49 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem; /* Increased gap for better spacing on mobile */
 }
 
 @media screen and (min-width: 768px) {
     .footer-content {
         flex-direction: row;
         justify-content: space-between;
+        align-items: center; /* Ensure vertical alignment */
     }
 }
 
 .social-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem; /* Consistent gap */
     justify-content: center;
+    align-items: center;
 }
 
 .social-link {
-    flex: 1 1 45%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 0.5rem; /* Reduced from 2rem to be tighter and more consistent */
     text-decoration: none;
-    color: inherit;
+    color: #888; /* Softer text color */
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.social-link:hover {
+    color: #1ED760; /* Brand color on hover */
 }
 
 .social-link img {
-    width: 24px;
-    height: 24px;
+    width: 20px; /* Slightly smaller icons for better proportion */
+    height: 20px;
+}
+
+.copyright {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0; /* Remove default margins */
 }
 
 @media screen and (min-width: 768px) {
