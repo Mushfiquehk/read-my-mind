@@ -1,0 +1,49 @@
+---
+layout: default
+title: MHKBD Profile
+extra_css: /assets/css/pages/index.css
+---
+<h1>MHKBD</h1>
+
+<section class="about-section">
+    <div class="profile-image-container">
+        <img src="{{ "/app/static/images/spotify-summary.jpeg" | relative_url }}" alt="Profile Picture" class="profile-image">
+    </div>
+    <div class="about-text">
+        <p>Sharing things I find like and find useful, including projects that I have started.</p>
+    </div>
+</section>
+
+<section class="projects-section">
+    <h2>Projects 📲</h2>
+    <div class="projects-container">
+        <div class="project-card">
+            <h3><a href="https://github.com/Mushfiquehk/read-my-mind" target="_blank">This Website</a></h3>
+            <p>Things I do and things I am into</p>
+        </div>
+        <div class="project-card">
+            <h3><a href="https://github.com/Mushfiquehk/Stork-Distribution.git" target="_blank">E-Commerce</a></h3>
+            <p>Online retail storefront with item and order function</p>
+        </div>
+        <div class="project-card">
+            <h3><a href="" target="_blank">Stay Tuned</a></h3>
+            <p>More coming soon...</p>
+        </div>
+    </div>
+</section>
+
+<section class="articles-section">
+    <h2>Articles 🖊️</h2>
+    {% if site.posts.size > 0 %}
+    <div class="articles-list">
+        {% for post in site.posts limit:10 %}
+        <div class="article-item">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <span class="article-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-articles">No articles yet.</p>
+    {% endif %}
+</section>
