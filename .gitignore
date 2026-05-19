@@ -163,3 +163,8 @@ cython_debug/
 # .elasticbeanstalk/*
 # !.elasticbeanstalk/*.cfg.yml
 # !.elasticbeanstalk/*.global.yml
+
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata

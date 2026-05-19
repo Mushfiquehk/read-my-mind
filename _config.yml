@@ -1,0 +1,35 @@
+title: MHKBD
+description: Things I do and things I am into
+url: "https://mhkbd.me"
+baseurl: ""
+
+author:
+  name: Mushfique Khan
+
+permalink: /blog/:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - application.py
+  - requirements.txt
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"

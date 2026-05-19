@@ -1,10 +1,41 @@
 # read-my-mind
-Spotify API consumer using Flask
+Personal website at [mhkbd.me](https://mhkbd.me), built with Jekyll and hosted on GitHub Pages.
 
-### Deployment
+## Structure
 
-Deployment is done on AWS Elastic Beanstalk. Make sure you have the EB CLI installed and configured.
-To deploy the application, run the following command in the terminal:
+- `_layouts/` — Page layouts (`default.html`, `post.html`)
+- `_includes/` — Reusable partials (header, footer)
+- `_posts/` — Blog posts in Markdown (`YYYY-MM-DD-title.md`)
+- `assets/css/` — Stylesheets
+- `app/static/` — Images and legacy static assets
 
-```eb deploy
+## Writing Posts
+
+Create a file in `_posts/` following the naming convention:
+
 ```
+_posts/YYYY-MM-DD-your-title.md
+```
+
+With front matter:
+
+```yaml
+---
+title: "Your Post Title"
+date: YYYY-MM-DD
+---
+
+Your content here (Markdown).
+```
+
+## Local Development
+
+```bash
+bundle install
+bundle exec jekyll serve
+```
+
+## Deployment
+
+Pushed to `main` → GitHub Pages builds and deploys automatically.
+
