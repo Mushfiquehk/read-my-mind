@@ -1,39 +1,26 @@
 ---
 layout: default
-title: MHKBD Profile
+title: MHKBD
 extra_css: /assets/css/pages/index.css
 ---
 <h1>MHKBD</h1>
 
-<section class="about-section">
-    <div class="profile-image-container">
-        <img src="{{ "/app/static/images/spotify-summary.jpeg" | relative_url }}" alt="Profile Picture" class="profile-image">
-    </div>
-    <div class="about-text">
-        <p>Sharing things I find like and find useful, including projects that I have started.</p>
-    </div>
-</section>
-
 <section class="projects-section">
-    <h2>Projects 📲</h2>
+    <h2>Projects</h2>
     <div class="projects-container">
         <div class="project-card">
             <h3><a href="https://github.com/Mushfiquehk/read-my-mind" target="_blank">This Website</a></h3>
-            <p>Things I do and things I am into</p>
+            <p>Personal site built with Jekyll and hosted on GitHub Pages.</p>
         </div>
         <div class="project-card">
-            <h3><a href="https://github.com/Mushfiquehk/Stork-Distribution.git" target="_blank">E-Commerce</a></h3>
-            <p>Online retail storefront with item and order function</p>
-        </div>
-        <div class="project-card">
-            <h3><a href="" target="_blank">Stay Tuned</a></h3>
-            <p>More coming soon...</p>
+            <h3><a href="https://github.com/Mushfiquehk/Stork-Distribution" target="_blank">E-Commerce</a></h3>
+            <p>Online retail storefront with item and order management.</p>
         </div>
     </div>
 </section>
 
 <section class="articles-section">
-    <h2>Articles 🖊️</h2>
+    <h2>Writing</h2>
     {% if site.posts.size > 0 %}
     <div class="articles-list">
         {% for post in site.posts limit:10 %}
@@ -44,6 +31,6 @@ extra_css: /assets/css/pages/index.css
         {% endfor %}
     </div>
     {% else %}
-    <p class="no-articles">No articles yet.</p>
+    <p class="no-articles">Nothing yet.</p>
     {% endif %}
 </section>
